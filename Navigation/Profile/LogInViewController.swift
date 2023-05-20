@@ -68,7 +68,7 @@ class LogInViewController: UIViewController {
     }()
     
     //Кнопка логина Log In
-    let buttonLogIn: UIButton = {
+    lazy var buttonLogIn: UIButton = {
         let buttonLogIn = UIButton()
         buttonLogIn.translatesAutoresizingMaskIntoConstraints = false
         buttonLogIn.setTitle("Log In", for: .normal)
