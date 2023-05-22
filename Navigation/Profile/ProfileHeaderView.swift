@@ -133,13 +133,14 @@ class ProfileHeaderView: UIView {
     
     //Метод добавления Views на экран
     func addingViewsFromProfileHeaderView() {
-        addSubview(avatarImageView)
-        addSubview(backView)
-        addSubview(closeButton)
         addSubview(fullNameLabel)
         addSubview(statusLabel)
         addSubview(statusTextField)
         addSubview(setStatusButton)
+        addSubview(backView)
+        addSubview(closeButton)
+        addSubview(avatarImageView)
+
         
         
     }
@@ -148,21 +149,7 @@ class ProfileHeaderView: UIView {
     func addigLayouts() {
         //Выставляю констрейнты для остальных вью
         NSLayoutConstraint.activate([
-            //avatarImageView констрейнты
-            avatarImageView.topAnchor.constraint(equalTo: topAnchor, constant: 16),
-            avatarImageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
-            avatarImageView.widthAnchor.constraint(equalToConstant: 150),
-            avatarImageView.heightAnchor.constraint(equalToConstant: 150),
-
-            //backView констрейнты
-            backView.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width),
-            backView.heightAnchor.constraint(equalToConstant: UIScreen.main.bounds.height),
-
-            //closeButton конестрейнты
-            closeButton.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 16),
-            closeButton.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -16),
-            closeButton.widthAnchor.constraint(equalToConstant: 30),
-            closeButton.heightAnchor.constraint(equalToConstant: 30),
+           
 
             //fullNameLabel констрейнты
             fullNameLabel.topAnchor.constraint(equalTo: topAnchor, constant: 27),
@@ -187,6 +174,22 @@ class ProfileHeaderView: UIView {
             setStatusButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
             setStatusButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
             setStatusButton.heightAnchor.constraint(equalToConstant: 50),
+            
+            //avatarImageView констрейнты
+            avatarImageView.topAnchor.constraint(equalTo: topAnchor, constant: 16),
+            avatarImageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
+            avatarImageView.widthAnchor.constraint(equalToConstant: 150),
+            avatarImageView.heightAnchor.constraint(equalToConstant: 150),
+
+            //backView констрейнты
+            backView.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width),
+            backView.heightAnchor.constraint(equalToConstant: UIScreen.main.bounds.height),
+
+            //closeButton конестрейнты
+            closeButton.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 16),
+            closeButton.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -16),
+            closeButton.widthAnchor.constraint(equalToConstant: 30),
+            closeButton.heightAnchor.constraint(equalToConstant: 30),
         ])
     }
     
