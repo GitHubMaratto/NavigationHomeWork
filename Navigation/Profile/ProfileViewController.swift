@@ -78,10 +78,10 @@ extension ProfileViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 {
-            var countOfRowsInSectionFirst = 1
+            let countOfRowsInSectionFirst = 1
             return countOfRowsInSectionFirst
         } else if section >= 1 {
-            var countOfRowsInSection = posts[section].count
+            let countOfRowsInSection = posts[section].count
             return countOfRowsInSection
         } else {
             return posts[section].count

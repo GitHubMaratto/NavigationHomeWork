@@ -2,8 +2,13 @@ import Foundation
 import UIKit
 
 class ProfileHeaderView: UIView {
+    
+    //MARK: - Class Properties Свойтсва Класса
+    
     var profileHeaderViewConstraints = UIView()
     let viewController = UIViewController()
+    var profileViewController = ProfileViewController()
+    
     //Создаю blueView
     let blueView: UIView = {
         let blueView = UIView()
@@ -12,7 +17,7 @@ class ProfileHeaderView: UIView {
         return blueView
     }()
     //Создаю avatarImageView аватар с котом
-    let avatarImageView: UIImageView = {
+    private lazy var avatarImageView: UIImageView = {
         let image = UIImageView()
         image.image = UIImage(named: "catwhite.jpg")
         image.translatesAutoresizingMaskIntoConstraints = false
@@ -20,8 +25,33 @@ class ProfileHeaderView: UIView {
         image.layer.borderColor = UIColor.white.cgColor
         image.layer.cornerRadius = 75
         image.clipsToBounds = true
+        image.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(avatarTap)))
+        image.isUserInteractionEnabled = true
         
         return image
+    }()
+    
+    //Создаю backView задник для отображения аватара на весь экран
+    private let backView: UIView = {
+        let backView = UIView()
+        backView.backgroundColor = UIColor.black.withAlphaComponent(0.5)
+        backView.alpha = 0
+        backView.translatesAutoresizingMaskIntoConstraints = false
+        
+        return backView
+    }()
+    
+    //closeButton кнопка для закрытия вью
+    private lazy var closeButton: UIButton = {
+        let closeButton = UIButton(type: .system)
+        closeButton.setImage(UIImage(systemName: "xmark"), for: .normal)
+        closeButton.tintColor = .black
+        closeButton.alpha = 0
+        closeButton.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(closeButtonTap)))
+        closeButton.isUserInteractionEnabled = true
+        closeButton.translatesAutoresizingMaskIntoConstraints = false
+        
+        return closeButton
     }()
     //Создаю fullNameLabel тут написан никнейм
     let fullNameLabel: UILabel = {
@@ -82,6 +112,8 @@ class ProfileHeaderView: UIView {
         return button
     }()
     
+    //MARK: -  Class Initializer Инициализатор Класса
+    
     //Инициализатор
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -93,29 +125,32 @@ class ProfileHeaderView: UIView {
             fatalError("init(coder:) has not been implemented")
         }
     
+    //MARK: - Class Methods Методы Класса
+    
     override func layoutSubviews() {
         super.layoutSubviews()
     }
     
     //Метод добавления Views на экран
     func addingViewsFromProfileHeaderView() {
-        addSubview(avatarImageView)
         addSubview(fullNameLabel)
         addSubview(statusLabel)
         addSubview(statusTextField)
         addSubview(setStatusButton)
+        addSubview(backView)
+        addSubview(closeButton)
+        addSubview(avatarImageView)
+
+        
+        
     }
     
     //Метод добавленя Constraints
     func addigLayouts() {
         //Выставляю констрейнты для остальных вью
         NSLayoutConstraint.activate([
-            //avatarImageView констрейнты
-            avatarImageView.topAnchor.constraint(equalTo: topAnchor, constant: 16),
-            avatarImageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
-            avatarImageView.widthAnchor.constraint(equalToConstant: 150),
-            avatarImageView.heightAnchor.constraint(equalToConstant: 150),
-            
+           
+
             //fullNameLabel констрейнты
             fullNameLabel.topAnchor.constraint(equalTo: topAnchor, constant: 27),
             fullNameLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 190),
@@ -135,10 +170,26 @@ class ProfileHeaderView: UIView {
             statusTextField.heightAnchor.constraint(equalToConstant: 40),
             
             //setStatusButton констрейнты
-            setStatusButton.topAnchor.constraint(equalTo: avatarImageView.bottomAnchor, constant: 16),
+            setStatusButton.topAnchor.constraint(equalTo: topAnchor, constant: 182),
             setStatusButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
             setStatusButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
             setStatusButton.heightAnchor.constraint(equalToConstant: 50),
+            
+            //avatarImageView констрейнты
+            avatarImageView.topAnchor.constraint(equalTo: topAnchor, constant: 16),
+            avatarImageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
+            avatarImageView.widthAnchor.constraint(equalToConstant: 150),
+            avatarImageView.heightAnchor.constraint(equalToConstant: 150),
+
+            //backView констрейнты
+            backView.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width),
+            backView.heightAnchor.constraint(equalToConstant: UIScreen.main.bounds.height),
+
+            //closeButton конестрейнты
+            closeButton.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 16),
+            closeButton.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -16),
+            closeButton.widthAnchor.constraint(equalToConstant: 30),
+            closeButton.heightAnchor.constraint(equalToConstant: 30),
         ])
     }
     
@@ -147,6 +198,42 @@ class ProfileHeaderView: UIView {
     @objc func buttonPressed() {
         let textToPrint = statusLabel.text
         print("\(String(describing: textToPrint))")
+    }
+
+    
+    //Метод avatarTap() при нажатии на аватар увеливчивает его на весь экран
+    @objc private func avatarTap() {
+        
+        print("Avatar Tapped")
+        UIView.animate(withDuration: 0.5, animations: {
+            self.avatarImageView.transform = CGAffineTransform(scaleX: 4, y: 4)
+            self.backView.frame = .init(origin: CGPoint(x: 0, y: 0), size: CGSize(width: 395, height: 710))
+            self.avatarImageView.center = self.backView.center
+            self.avatarImageView.layer.cornerRadius = 0
+            self.backView.alpha = 1
+        }) { _ in
+            UIView.animate(withDuration: 0.3) {
+                self.closeButton.alpha = 1
+                self.backView.alpha = 1
+            }
+        }
+    }
+    
+    //Метод closeButtonTap() метод сворачивает обратно аватар
+    @objc private func closeButtonTap() {
+        
+        print("Tapped closeButton")
+        UIView.animate(withDuration: 0.3, animations: {
+            self.closeButton.alpha = 0
+        }) { _ in
+            UIView.animate(withDuration: 0.5, animations: {
+                self.avatarImageView.frame = .init(origin: CGPoint(x: 16, y: 16), size: CGSize(width: 100, height: 100))
+                self.avatarImageView.transform = .identity
+                self.avatarImageView.layer.cornerRadius = 50
+                self.backView.alpha = 0
+            })
+
+        }
     }
   
 }
