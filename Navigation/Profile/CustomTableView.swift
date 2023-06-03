@@ -12,7 +12,7 @@ import UIKit
 final class CustomTableViewCell: UITableViewCell {
     
     //Создаю contentWhiteView
-    private let contentWhiteView: UIView = {
+    let contentWhiteView: UIView = {
         let contentWhiteView = UIView()
         contentWhiteView.backgroundColor = .white
         contentWhiteView.translatesAutoresizingMaskIntoConstraints = false
@@ -21,7 +21,7 @@ final class CustomTableViewCell: UITableViewCell {
     }()
     
     //Создаю authorTextLabel
-    private let authorTextLabel: UILabel = {
+    let authorTextLabel: UILabel = {
         let authorTextLabel = UILabel()
         authorTextLabel.translatesAutoresizingMaskIntoConstraints = false
         authorTextLabel.font = UIFont.systemFont(ofSize: 20, weight: .bold)
@@ -32,7 +32,7 @@ final class CustomTableViewCell: UITableViewCell {
     }()
     
     //Создаю imagePostView
-    private let imagePostView: UIImageView = {
+    let imagePostView: UIImageView = {
         let imagePostView = UIImageView()
         imagePostView.translatesAutoresizingMaskIntoConstraints = false
         imagePostView.contentMode = .scaleAspectFit
@@ -42,7 +42,7 @@ final class CustomTableViewCell: UITableViewCell {
     }()
     
     //Создаю descriptionTextLabel
-    private let descriptionTextLabel: UILabel = {
+    let descriptionTextLabel: UILabel = {
         let descriptionTextLabel = UILabel()
         descriptionTextLabel.translatesAutoresizingMaskIntoConstraints = false
         descriptionTextLabel.font = UIFont.systemFont(ofSize: 14)
@@ -53,17 +53,18 @@ final class CustomTableViewCell: UITableViewCell {
     }()
     
     //Создаю likesView
-    private let likesView: UILabel = {
+    let likesView: UILabel = {
         let likesView = UILabel()
         likesView.translatesAutoresizingMaskIntoConstraints = false
         likesView.font = UIFont.systemFont(ofSize: 16)
         likesView.textColor = .black
+        likesView.addGestureRecognizer(UIGestureRecognizer(target: self, action: #selector(tapLikes)))
         
         return likesView
     }()
     
     //Создаю viewViews
-    private let viewViews: UILabel = {
+    let viewViews: UILabel = {
         let viewViews = UILabel()
         viewViews.translatesAutoresizingMaskIntoConstraints = false
         viewViews.font = UIFont.systemFont(ofSize: 16)
@@ -106,6 +107,10 @@ final class CustomTableViewCell: UITableViewCell {
         [contentWhiteView, authorTextLabel, imagePostView, descriptionTextLabel, likesView, viewViews].forEach {
             contentView.addSubview($0)
         }
+    }
+    
+    @objc func tapLikes() {
+        print("Likes Tapped")
     }
     
     private func addingConstraints() {

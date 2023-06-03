@@ -14,6 +14,9 @@ class PhotosViewController: UIViewController {
     
     // MARK: - Class Properties Свойства Класса
     
+    let photosCollectionViewCell = PhotosCollectionViewCell()
+    lazy var photo = photosCollectionViewCell.mainImageView
+    
     var imagesAdding = [UIImage]()
     
     private lazy var collectionView: UICollectionView = {
@@ -23,7 +26,7 @@ class PhotosViewController: UIViewController {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.backgroundColor = .white
-        collectionView.register(PhotosCollecrionViewCell.self, forCellWithReuseIdentifier: PhotosCollecrionViewCell.identifier)
+        collectionView.register(PhotosCollectionViewCell.self, forCellWithReuseIdentifier: PhotosCollectionViewCell.identifier)
         collectionView.dataSource = self
         collectionView.delegate = self
         
@@ -31,7 +34,29 @@ class PhotosViewController: UIViewController {
     }()
     
     let navigationBar: UINavigationBar = UINavigationBar(frame: CGRect(x: 0, y: 35, width: UIScreen.main.bounds.width, height: 40))
-   
+    
+    //Создаю backView задник для отображения аватара на весь экран
+    private let backView: UIView = {
+        let backView = UIView()
+        backView.backgroundColor = UIColor.black.withAlphaComponent(0.5)
+        backView.alpha = 0
+        backView.translatesAutoresizingMaskIntoConstraints = false
+        
+        return backView
+    }()
+    
+    //closeButton кнопка для закрытия вью
+    private lazy var closeButton: UIButton = {
+        let closeButton = UIButton(type: .system)
+        closeButton.setImage(UIImage(systemName: "xmark"), for: .normal)
+        closeButton.tintColor = .black
+        closeButton.alpha = 0
+        closeButton.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(closeButtonTap)))
+        closeButton.isUserInteractionEnabled = true
+        closeButton.translatesAutoresizingMaskIntoConstraints = false
+        
+        return closeButton
+    }()
     
     
     //MARK: - Class Methods Методы Класса
@@ -43,6 +68,7 @@ class PhotosViewController: UIViewController {
         addingGalleryViewsPhotosViewController()
         addingLayoutsPhotosGalleryViewController()
         makeArrayImages()
+        photoCustomize()
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -78,6 +104,10 @@ class PhotosViewController: UIViewController {
     private  func addingGalleryViewsPhotosViewController() {
         view.addSubview(collectionView)
         view.addSubview(navigationBar)
+        view.addSubview(photo)
+        view.addSubview(backView)
+        view.addSubview(closeButton)
+        
     }
     
     private func addingLayoutsPhotosGalleryViewController() {
@@ -86,7 +116,57 @@ class PhotosViewController: UIViewController {
             collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            
+            //backView констрейнты
+            backView.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width),
+            backView.heightAnchor.constraint(equalToConstant: UIScreen.main.bounds.height),
+
+            //closeButton конестрейнты
+            closeButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 16),
+            closeButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
+            closeButton.widthAnchor.constraint(equalToConstant: 30),
+            closeButton.heightAnchor.constraint(equalToConstant: 30),
         ])
+    }
+    
+    private func photoCustomize() {
+        photo.translatesAutoresizingMaskIntoConstraints = false
+//        photo.contentMode = .scaleAspectFill
+        photo.isUserInteractionEnabled = true
+    }
+  
+    //Метод imageTapped() при нажатии на картинку увеливчивает его на весь экран
+    @objc private func imageTapped() {
+        print("Image Tapped")
+        UIView.animate(withDuration: 0.5, animations: {
+            self.photo.transform = CGAffineTransform(scaleX: 1, y: 1)
+            self.backView.frame = .init(origin: CGPoint(x: 0, y: 0), size: CGSize(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height))
+            self.photo.center = self.backView.center
+            self.photo.layer.cornerRadius = 0
+            self.backView.alpha = 1
+        }) { _ in
+            UIView.animate(withDuration: 0.3) {
+                self.closeButton.alpha = 1
+                self.backView.alpha = 1
+            }
+        }
+    }
+    
+    //Метод closeButtonTap() метод сворачивает обратно аватар
+    @objc private func closeButtonTap() {
+        
+        print("Tapped closeButton")
+        UIView.animate(withDuration: 0.3, animations: {
+            self.closeButton.alpha = 0
+        }) { _ in
+            UIView.animate(withDuration: 0.5, animations: {
+                self.photo.transform = CGAffineTransform(scaleX: 0, y: 0)
+                self.photo.transform = .init(scaleX: 0, y: 0)
+                self.photo.frame = .init(origin: CGPoint(x: 0, y: 0), size: CGSize(width: 0, height: 0))
+                self.backView.alpha = 0
+            })
+
+        }
     }
 }
 
@@ -100,7 +180,7 @@ extension PhotosViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
 
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PhotosCollecrionViewCell.identifier, for: indexPath) as! PhotosCollecrionViewCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PhotosCollectionViewCell.identifier, for: indexPath) as! PhotosCollectionViewCell
 
         cell.mainImageView.image = imagesAdding[indexPath.row]
         
@@ -142,6 +222,10 @@ extension PhotosViewController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         print("Секция = \(indexPath.section), Ячейка = \(indexPath.item)")
+        photo.image = UIImage(named: "Photo\(indexPath.item)")
+        
+        
+        imageTapped()
     }
     
 }
