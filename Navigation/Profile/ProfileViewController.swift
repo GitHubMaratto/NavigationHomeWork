@@ -8,7 +8,12 @@ class ProfileViewController: UIViewController {
     var postsArrayArray = Post.makePosts()
     private var galleryOnScreen = PhotoViewStruct.makeGallery()
     var post = Post.makePostsWithArray()
-  
+    var postNumberOne = Post(authorPost: "Marat Avzalov", descriptionPost: "This is my Post", imagePost: UIImage(named: "Photo")!, likesPost: 650, viewsPost: 1000)
+    var postNumberTwo = Post(authorPost: "MDK", descriptionPost: "This cat is Cool for You today", imagePost:  UIImage(named: "MDKPost")!, likesPost: 1500, viewsPost: 100000000)
+    var postNumberThree = Post(authorPost: "Travel", descriptionPost: "Nice Weather Nice Shine", imagePost: UIImage(named: "NicePost")!, likesPost: 1500, viewsPost: 1000000000000)
+    var postNumberFour = Post(authorPost: "Post with Love", descriptionPost: "Love is...", imagePost: UIImage(named: "LoveIsPost")!, likesPost: 5000, viewsPost: 500000000000)
+    
+    
     //Создаю tableView
     let tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .grouped)
@@ -112,9 +117,16 @@ extension ProfileViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 {
             return 1
+        } else if section == 1 {
+            return 1
+        } else if section == 2 {
+            return 1
+        } else if section == 3 {
+            return 1
+        } else if section == 4 {
+            return 1
         } else {
-            return postsArrayArray[section].count
-//            return post.count
+            return post.count
         }
     }
     
@@ -124,13 +136,55 @@ extension ProfileViewController: UITableViewDataSource {
             let cell = tableView.dequeueReusableCell(withIdentifier: PhotosTableViewCell.identifier, for: indexPath) as! PhotosTableViewCell
             cell.setupCellGallery(insertCellPhotos: galleryOnScreen[indexPath.row])
             return cell
-        } else {
+        } else if indexPath.section == 1 {
             let cell = tableView.dequeueReusableCell(withIdentifier: CustomTableViewCell.identifier, for: indexPath) as! CustomTableViewCell
-            cell.setupCell(insertPost: postsArrayArray[indexPath.section][indexPath.row])
+//            cell.setupCell(insertPost: postsArrayArray[indexPath.section][indexPath.row])
 //            cell.setupCell(insertPost: post[indexPath.row])
+            cell.authorTextLabel.text =  postNumberOne.authorPost
+            cell.imagePostView.image = postNumberOne.imagePost
+            cell.descriptionTextLabel.text = postNumberOne.descriptionPost
+            cell.likesView.text = "Likes: \(String(postNumberOne.likesPost))"
+            cell.viewViews.text = "Views: \(String(postNumberOne.viewsPost))"
+//            cell.likesView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(cell.tapLikes)))
+            cell.likesView.isUserInteractionEnabled = true
             
             return cell
+        } else if indexPath.section == 2 {
+            let cell = tableView.dequeueReusableCell(withIdentifier: CustomTableViewCell.identifier, for: indexPath) as! CustomTableViewCell
+            cell.authorTextLabel.text =  postNumberTwo.authorPost
+            cell.imagePostView.image = postNumberTwo.imagePost
+            cell.descriptionTextLabel.text = postNumberTwo.descriptionPost
+            cell.likesView.text = "Likes: \(String(postNumberTwo.likesPost))"
+            cell.viewViews.text = "Views: \(String(postNumberTwo.viewsPost))"
+            cell.likesView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(cell.tapLikes)))
+            cell.likesView.isUserInteractionEnabled = true
             
+            return cell
+        } else if indexPath.section == 3 {
+            let cell = tableView.dequeueReusableCell(withIdentifier: CustomTableViewCell.identifier, for: indexPath) as! CustomTableViewCell
+            cell.authorTextLabel.text =  postNumberThree.authorPost
+            cell.imagePostView.image = postNumberThree.imagePost
+            cell.descriptionTextLabel.text = postNumberThree.descriptionPost
+            cell.likesView.text = "Likes: \(String(postNumberThree.likesPost))"
+            cell.viewViews.text = "Views: \(String(postNumberThree.viewsPost))"
+//                cell.likesView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(tapLikes)))
+            cell.likesView.isUserInteractionEnabled = true
+            
+            return cell
+        } else if indexPath.section == 4 {
+            let cell = tableView.dequeueReusableCell(withIdentifier: CustomTableViewCell.identifier, for: indexPath) as! CustomTableViewCell
+            cell.authorTextLabel.text =  postNumberFour.authorPost
+            cell.imagePostView.image = postNumberFour.imagePost
+            cell.descriptionTextLabel.text = postNumberFour.descriptionPost
+            cell.likesView.text = "Likes: \(String(postNumberFour.likesPost))"
+            cell.viewViews.text = "Views: \(String(postNumberFour.viewsPost))"
+//                cell.likesView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(tapLikes)))
+            cell.likesView.isUserInteractionEnabled = true
+            
+            return cell
+        } else {
+            let cell = tableView.dequeueReusableCell(withIdentifier: CustomTableViewCell.identifier, for: indexPath) as! CustomTableViewCell
+            return cell
         }
     }
 }
