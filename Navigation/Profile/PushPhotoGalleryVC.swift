@@ -9,9 +9,7 @@ import Foundation
 import UIKit
 
 class PushPhotoGalleryVC: UIViewController {
-    
-    
-    
+   
     override func viewDidLoad() {
         super.viewDidLoad()
     }

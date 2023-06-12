@@ -107,6 +107,8 @@ final class CustomTableViewCell: UITableViewCell {
         likesView.text = "Likes: \(String(insertPost.likesPost))"
         viewViews.text = "Views: \(String(insertPost.viewsPost))"
         likesView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(tapLikes)))
+        likesView.isUserInteractionEnabled = true
+        
     }
     
     //Метод добавляет все наши view на экран
@@ -117,6 +119,7 @@ final class CustomTableViewCell: UITableViewCell {
     }
     
     @objc func tapLikes() {
+//        var likesViewCount = 1
         print("Likes Tapped")
     }
     

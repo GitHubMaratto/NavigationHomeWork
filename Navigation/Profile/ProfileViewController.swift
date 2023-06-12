@@ -5,12 +5,10 @@ class ProfileViewController: UIViewController {
     //MARK: - Class Properties Cвойства Класса
     
     //Создаю экземпляр posts из структуры Post присваиваю метод makePosts()
-    var postsArray = Post.makePostsWithArray()
     var postsArrayArray = Post.makePosts()
     private var galleryOnScreen = PhotoViewStruct.makeGallery()
+    var post = Post.makePostsWithArray()
   
-    var postOne = Post(authorPost: "123", descriptionPost: "123", imagePost: UIImage(named: "Photo")!, likesPost: 650, viewsPost: 1000)
-    
     //Создаю tableView
     let tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .grouped)
@@ -27,7 +25,7 @@ class ProfileViewController: UIViewController {
     
     //MARK: -  Class Initializer Инициализатор Класса
     
- 
+
     
     //MARK: - Class Methods Методаы Класса
     override func viewDidLoad() {
@@ -64,10 +62,6 @@ class ProfileViewController: UIViewController {
         super.viewWillAppear(animated)
     }
     
-    @objc func addLike() {
-        print("Tapped")
-    }
-    
 }
 //Расширю ProfileViewController и подписывваюсь под протокол UITableViewDelegate
 extension ProfileViewController: UITableViewDelegate {
@@ -93,22 +87,6 @@ extension ProfileViewController: UITableViewDelegate {
             postPresentDetailVC.setupVC(insertPost: postsArrayArray[indexPath.section][indexPath.row], indexPath: indexPath)
             present(postPresentDetailVC, animated: true)
         }
-        
-        
-//        if indexPath.section == 1 {
-//            let postPresentDetailVC = PostPresentDetailVC()
-//            postPresentDetailVC.setupVC(insertPost: postsArrayArray[indexPath.section][indexPath.row], indexPath: indexPath)
-//            present(postPresentDetailVC, animated: true)
-//        } else if indexPath.section == 2 {
-//            let postPresentTwo = PostPresentTwo()
-//            present(postPresentTwo, animated: true)
-//        } else if indexPath.section == 3 {
-//            let postPresentThree = PostPresentThree()
-//            present(postPresentThree, animated: true)
-//        } else if indexPath.section == 4 {
-//            let postPresentFour = PostPresentFour()
-//            present(postPresentFour, animated: true)
-//        }
     }
     
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
@@ -136,6 +114,7 @@ extension ProfileViewController: UITableViewDataSource {
             return 1
         } else {
             return postsArrayArray[section].count
+//            return post.count
         }
     }
     
@@ -148,6 +127,7 @@ extension ProfileViewController: UITableViewDataSource {
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: CustomTableViewCell.identifier, for: indexPath) as! CustomTableViewCell
             cell.setupCell(insertPost: postsArrayArray[indexPath.section][indexPath.row])
+//            cell.setupCell(insertPost: post[indexPath.row])
             
             return cell
             

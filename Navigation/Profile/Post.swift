@@ -68,20 +68,20 @@ struct Post {
         sectionInPost.append(Post(authorPost: "MDK",
                                   descriptionPost: "This cat is Cool for You today",
                                   imagePost: UIImage(named: "MDKPost")!,
-                                  likesPost: 1298,
-                                  viewsPost: 100120031))
+                                  likesPost: 1500,
+                                  viewsPost: 100000000))
         //Добавляю в массив структуру Post
         sectionInPost.append(Post(authorPost: "Travel",
                                   descriptionPost: "Nice Weather Nice Shine",
                                   imagePost: UIImage(named: "NicePost")!,
-                                  likesPost: 1231,
-                                  viewsPost: 14134532752))
+                                  likesPost: 1500,
+                                  viewsPost: 1000000000000))
         //Добавляю в массив структуру Post
         sectionInPost.append(Post(authorPost: "Post with Love",
                                   descriptionPost: "Love is...",
                                   imagePost: UIImage(named: "LoveIsPost")!,
-                                  likesPost: 4325,
-                                  viewsPost: 412456545))
+                                  likesPost: 5000,
+                                  viewsPost: 500000000000))
         return sectionInPost
         }
 
