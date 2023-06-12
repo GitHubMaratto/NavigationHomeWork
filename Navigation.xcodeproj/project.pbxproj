@@ -12,10 +12,6 @@
 		799D37042A0C972900280775 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 799D37032A0C972900280775 /* UIView+Extension.swift */; };
 		799D37062A0CA2E100280775 /* CustomTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 799D37052A0CA2E100280775 /* CustomTableView.swift */; };
 		799E78892A1DA05C004F7392 /* AlertViewLogin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 799E78882A1DA05C004F7392 /* AlertViewLogin.swift */; };
-		79A1756D2A20413B00243CEC /* PostPresentOne.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79A1756C2A20413A00243CEC /* PostPresentOne.swift */; };
-		79A1756F2A20525200243CEC /* PostPresentTwo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79A1756E2A20525200243CEC /* PostPresentTwo.swift */; };
-		79A175712A2052F500243CEC /* PostPresentThree.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79A175702A2052F500243CEC /* PostPresentThree.swift */; };
-		79A175732A20530800243CEC /* PostPresentFour.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79A175722A20530800243CEC /* PostPresentFour.swift */; };
 		79BCE3722A2968B500118E56 /* PushPhotoGalleryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79BCE3712A2968B500118E56 /* PushPhotoGalleryVC.swift */; };
 		CE4C182D29FB55E20049C21F /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4C182C29FB55E20049C21F /* UIColorExtension.swift */; };
 		CE4C182F29FB5B2A0049C21F /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4C182E29FB5B2A0049C21F /* LogInViewController.swift */; };
@@ -43,10 +39,6 @@
 		799D37032A0C972900280775 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		799D37052A0CA2E100280775 /* CustomTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTableView.swift; sourceTree = "<group>"; };
 		799E78882A1DA05C004F7392 /* AlertViewLogin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertViewLogin.swift; sourceTree = "<group>"; };
-		79A1756C2A20413A00243CEC /* PostPresentOne.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostPresentOne.swift; sourceTree = "<group>"; };
-		79A1756E2A20525200243CEC /* PostPresentTwo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostPresentTwo.swift; sourceTree = "<group>"; };
-		79A175702A2052F500243CEC /* PostPresentThree.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostPresentThree.swift; sourceTree = "<group>"; };
-		79A175722A20530800243CEC /* PostPresentFour.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostPresentFour.swift; sourceTree = "<group>"; };
 		79BCE3712A2968B500118E56 /* PushPhotoGalleryVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushPhotoGalleryVC.swift; sourceTree = "<group>"; };
 		CE4C182C29FB55E20049C21F /* UIColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
 		CE4C182E29FB5B2A0049C21F /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
@@ -133,10 +125,6 @@
 				799E78882A1DA05C004F7392 /* AlertViewLogin.swift */,
 				799CE38A2A28611D00C75CCB /* PostPresentDetailVC.swift */,
 				79BCE3712A2968B500118E56 /* PushPhotoGalleryVC.swift */,
-				79A1756C2A20413A00243CEC /* PostPresentOne.swift */,
-				79A1756E2A20525200243CEC /* PostPresentTwo.swift */,
-				79A175702A2052F500243CEC /* PostPresentThree.swift */,
-				79A175722A20530800243CEC /* PostPresentFour.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -214,10 +202,8 @@
 				CEB4212629E5C308006909E7 /* PostViewController.swift in Sources */,
 				CED976D329E18D7C00DCEF82 /* ViewController.swift in Sources */,
 				CED976CF29E18D7C00DCEF82 /* AppDelegate.swift in Sources */,
-				79A175732A20530800243CEC /* PostPresentFour.swift in Sources */,
 				79BCE3722A2968B500118E56 /* PushPhotoGalleryVC.swift in Sources */,
 				799E78892A1DA05C004F7392 /* AlertViewLogin.swift in Sources */,
-				79A1756F2A20525200243CEC /* PostPresentTwo.swift in Sources */,
 				CE4C182D29FB55E20049C21F /* UIColorExtension.swift in Sources */,
 				CE6221D62A148A71002EA8B0 /* PhotosTableViewCell.swift in Sources */,
 				CEB5B45829E5D2A40035F754 /* AlertViewController.swift in Sources */,
@@ -225,13 +211,11 @@
 				CEB28D492A14DDA7000AFC3F /* PhotoViewStruct.swift in Sources */,
 				CEB28D532A1641F0000AFC3F /* PhotosCollectionViewCell.swift in Sources */,
 				799D37022A0C93D800280775 /* Post.swift in Sources */,
-				79A1756D2A20413B00243CEC /* PostPresentOne.swift in Sources */,
 				CEB28D4B2A14EA57000AFC3F /* PhotosViewController.swift in Sources */,
 				CEB4212829E5C5E0006909E7 /* InfoViewController.swift in Sources */,
 				799CE38B2A28611D00C75CCB /* PostPresentDetailVC.swift in Sources */,
 				CEB420DC29E56B43006909E7 /* ProfileViewController.swift in Sources */,
 				799D37042A0C972900280775 /* UIView+Extension.swift in Sources */,
-				79A175712A2052F500243CEC /* PostPresentThree.swift in Sources */,
 				CEB5B45E29E5DD260035F754 /* PostTitle.swift in Sources */,
 				CE4C182F29FB5B2A0049C21F /* LogInViewController.swift in Sources */,
 				CEEC54BC29F2367100857A1A /* ProfileHeaderView.swift in Sources */,

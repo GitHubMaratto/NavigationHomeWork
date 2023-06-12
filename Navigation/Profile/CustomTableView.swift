@@ -11,6 +11,8 @@ import UIKit
 
 final class CustomTableViewCell: UITableViewCell {
     
+    //MARK: - Class Properties Свойства Класса
+    
     //Создаю contentWhiteView
     let contentWhiteView: UIView = {
         let contentWhiteView = UIView()
@@ -58,7 +60,6 @@ final class CustomTableViewCell: UITableViewCell {
         likesView.translatesAutoresizingMaskIntoConstraints = false
         likesView.font = UIFont.systemFont(ofSize: 16)
         likesView.textColor = .black
-        likesView.addGestureRecognizer(UIGestureRecognizer(target: self, action: #selector(tapLikes)))
         
         return likesView
     }()
@@ -73,6 +74,9 @@ final class CustomTableViewCell: UITableViewCell {
         return viewViews
     }()
     
+    
+    //MARK: -  Class Initializer Инициализатор Класса
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         addingViewsFromeCustomTableView()
@@ -82,6 +86,8 @@ final class CustomTableViewCell: UITableViewCell {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    //MARK: -  Class Methods Методы Класса
     
     //Метод для сбрасывания значения во view
     override func prepareForReuse() {
@@ -100,6 +106,7 @@ final class CustomTableViewCell: UITableViewCell {
         descriptionTextLabel.text = insertPost.descriptionPost
         likesView.text = "Likes: \(String(insertPost.likesPost))"
         viewViews.text = "Views: \(String(insertPost.viewsPost))"
+        likesView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(tapLikes)))
     }
     
     //Метод добавляет все наши view на экран

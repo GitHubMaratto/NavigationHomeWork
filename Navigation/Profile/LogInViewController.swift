@@ -282,22 +282,22 @@ class LogInViewController: UIViewController {
 //Расширяю LogInViewController для кнопки ретурн на клавиатуре что бы скрыть клавиатуру для ввода
 extension LogInViewController: UITextFieldDelegate {
     
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        let text = (loginTextField.text ?? "") + string
-        var res: String
-        res = text
-        
-//        if range.length == 1 {
-//            let end = text.index(text.startIndex, offsetBy: text.count - 1)
-//            res = String(text[text.startIndex..<end])
-//        } else {
-//            res = text
-//        }
-        
-//        checkEmailValidation(login: res)
-        loginTextField.text = res
-        return true
-    }
+//    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+//        let text = (loginTextField.text ?? "") + string
+//        var res: String
+//        res = text
+//        
+////        if range.length == 1 {
+////            let end = text.index(text.startIndex, offsetBy: text.count - 1)
+////            res = String(text[text.startIndex..<end])
+////        } else {
+////            res = text
+////        }
+//        
+////        checkEmailValidation(login: res)
+//        loginTextField.text = res
+//        return true
+//    }
     
     //Метод при выполнении нажатии кнопки return на клавиатур
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {

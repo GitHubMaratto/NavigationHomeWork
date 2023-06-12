@@ -16,9 +16,6 @@ class PostPresentDetailVC: UIViewController {
 
     //MARK: - Class Properties Свойства Класса
     
-    var likesCountOne: Int = 650
-    var viewsCountOne: Int = 1000
-    
     private let nc = NotificationCenter.default
     
     private var indexPath = IndexPath()
@@ -94,7 +91,7 @@ class PostPresentDetailVC: UIViewController {
         imagePostView.image = insertPost.imagePost
         descriptionTextLabel.text = insertPost.descriptionPost
         likesView.text = "Likes: \(String(insertPost.likesPost))"
-        viewViews.text = "Views: \(String(insertPost.viewsPost))"
+        viewViews.text = "Views: \(String(insertPost.viewsPost + 1))"
     }
     
     //Метод добавляет все наши view на экран

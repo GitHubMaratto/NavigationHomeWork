@@ -131,7 +131,6 @@ class PhotosViewController: UIViewController {
     
     private func photoCustomize() {
         photo.translatesAutoresizingMaskIntoConstraints = false
-//        photo.contentMode = .scaleAspectFill
         photo.isUserInteractionEnabled = true
     }
   
@@ -167,6 +166,7 @@ class PhotosViewController: UIViewController {
             })
 
         }
+        photo.image = nil
     }
 }
 

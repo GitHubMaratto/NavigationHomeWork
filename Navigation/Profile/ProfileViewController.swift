@@ -128,7 +128,7 @@ extension ProfileViewController: UITableViewDelegate {
 extension ProfileViewController: UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        postsArrayArray.count
+        5
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -137,19 +137,6 @@ extension ProfileViewController: UITableViewDataSource {
         } else {
             return postsArrayArray[section].count
         }
-        
-        
-//        if section == 1 {
-//            return 1
-//        } else if section == 2 {
-//            return 1
-//        }  else if section == 3 {
-//            return 1
-//        }  else if section == 4 {
-//            return 1
-//        } else {
-//            return 1
-//        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -165,35 +152,5 @@ extension ProfileViewController: UITableViewDataSource {
             return cell
             
         }
-        
-        
-        
-        //
-        //        if indexPath.section == 1 {
-        //            let cell = tableView.dequeueReusableCell(withIdentifier: CustomTableViewCell.identifier, for: indexPath) as! CustomTableViewCell
-        //            cell.setupCell(insertPost: postsArray[0])
-        ////            cell.setupCell(insertPost: postsArrayArray[indexPath.section][indexPath.row])
-        //            return cell
-        //        } else if indexPath.section == 2 {
-        //            let cell = tableView.dequeueReusableCell(withIdentifier: CustomTableViewCell.identifier, for: indexPath) as! CustomTableViewCell
-        //            cell.setupCell(insertPost: postsArray[1])
-        ////            cell.setupCell(insertPost: postsArrayArray[indexPath.section][indexPath.row])
-        //            return cell
-        //        }  else if indexPath.section == 3 {
-        //            let cell = tableView.dequeueReusableCell(withIdentifier: CustomTableViewCell.identifier, for: indexPath) as! CustomTableViewCell
-        //            cell.setupCell(insertPost: postsArray[2])
-        ////            cell.setupCell(insertPost: postsArrayArray[indexPath.section][indexPath.row])
-        //            return cell
-        //        } else if indexPath.section == 4 {
-        //            let cell = tableView.dequeueReusableCell(withIdentifier: CustomTableViewCell.identifier, for: indexPath) as! CustomTableViewCell
-        //            cell.setupCell(insertPost: postsArray[3])
-        ////            cell.setupCell(insertPost: postsArrayArray[indexPath.section][indexPath.row])
-        ////            cell.setupCell(insertPost: postsArrayArray[3][4])
-        //            return cell
-        //        } else {
-        //            return CustomTableViewCell()
-        //        }
-        //    }
-        
     }
 }
