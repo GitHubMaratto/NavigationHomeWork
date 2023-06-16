@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-//MARK: - class PhotosViewController
+//MARK: - Class PhotosViewController PhotosViewController Класс
 
 class PhotosViewController: UIViewController {
     
@@ -69,15 +69,17 @@ class PhotosViewController: UIViewController {
         addingLayoutsPhotosGalleryViewController()
         makeArrayImages()
         photoCustomize()
+
+        self.navigationController?.isNavigationBarHidden = true
     }
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        navigationController?.setNavigationBarHidden(true, animated: animated)
-    }
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        navigationController?.setNavigationBarHidden(true, animated: animated)
-    }
+//    override func viewWillAppear(_ animated: Bool) {
+//        super.viewWillAppear(animated)
+//        navigationController?.setNavigationBarHidden(false, animated: animated)
+//    }
+//    override func viewWillDisappear(_ animated: Bool) {
+//        super.viewWillDisappear(animated)
+//        navigationController?.setNavigationBarHidden(true, animated: animated)
+//    }
     
     private func setNavigationBarToTheGallery() {
         let navigationItemAdd = UINavigationItem(title: "Photo Gallery")
@@ -90,7 +92,8 @@ class PhotosViewController: UIViewController {
     }
  
     @objc func dissmissSelf() {
-        navigationController?.pushViewController(ProfileViewController(), animated: true)
+        navigationController?.popViewController(animated: true)
+//        navigationController?.pushViewController(ProfileViewController(), animated: true)
         print("tapped")
     }
   

@@ -8,6 +8,8 @@
 import Foundation
 import UIKit
 
+//MARK: - Class PhotosCollectionViewCell PhotosCollectionViewCell Класс
+
 class PhotosCollectionViewCell: UICollectionViewCell {
     
     //MARK: - Class Properties Свойства Класса

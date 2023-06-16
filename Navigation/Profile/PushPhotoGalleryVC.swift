@@ -8,6 +8,8 @@
 import Foundation
 import UIKit
 
+//MARK: - Сlass PushPhotoGalleryVC PushPhotoGalleryVC Класс
+
 class PushPhotoGalleryVC: UIViewController {
    
     override func viewDidLoad() {

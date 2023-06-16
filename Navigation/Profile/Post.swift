@@ -8,6 +8,8 @@
 import Foundation
 import UIKit
 
+//MARK: - Struck Post Структура Post
+
 //Создаю труктуру Post
 struct Post {
     var authorPost: String

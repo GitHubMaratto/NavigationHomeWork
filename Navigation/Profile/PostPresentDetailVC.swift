@@ -8,6 +8,8 @@
 import Foundation
 import UIKit
 
+//MARK: - Protocol PostPresentDetailVCDelegate PostPresentDetailVCDelegate Протокол
+
 protocol PostPresentDetailVCDelegate: AnyObject {
     func changeText(_ text: String, at indexPath: IndexPath)
 }
