@@ -176,6 +176,9 @@ extension ProfileViewController: UITableViewDataSource {
                 let postPresentDetailVC = PostPresentDetailVC()
                 self.postsArray[indexPath.row].viewsPost += 1
                 self.tableView.reloadData()
+                self.present(postPresentDetailVC, animated: true)
+                postPresentDetailVC.setupVC(insertPost: self.postsArray[indexPath.row], indexPath: indexPath)
+//                self.postPresentDetailVC.setupVC(insertPost: postsArray[indexPath.row], indexPath: indexPath)
 //                present(postPresentDetailVC, animated: true)
 //                postPresentDetailVC.setupVC(insertPost: postsArray[indexPath.row], indexPath: IndexPath) = self.postsArray[indexPath.row]
 //

@@ -43,7 +43,7 @@ final class CustomTableViewCell: UITableViewCell {
     }()
     
     //Создаю imagePostView
-    let imagePostView: UIImageView = {
+    lazy var imagePostView: UIImageView = {
         let imagePostView = UIImageView()
         imagePostView.translatesAutoresizingMaskIntoConstraints = false
         imagePostView.contentMode = .scaleAspectFit

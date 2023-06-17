@@ -93,7 +93,7 @@ class PostPresentDetailVC: UIViewController {
         imagePostView.image = insertPost.imagePost
         descriptionTextLabel.text = insertPost.descriptionPost
         likesView.text = "Likes: \(String(insertPost.likesPost))"
-        viewViews.text = "Views: \(String(insertPost.viewsPost + 1))"
+        viewViews.text = "Views: \(String(insertPost.viewsPost))"
     }
     
     //Метод добавляет все наши view на экран
