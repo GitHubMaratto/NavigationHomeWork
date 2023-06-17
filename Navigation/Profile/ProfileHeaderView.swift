@@ -246,7 +246,7 @@ class ProfileHeaderView: UIView {
             UIView.animate(withDuration: 0.5, animations: {
                 self.avatarImageView.frame = .init(origin: CGPoint(x: 16, y: 16), size: CGSize(width: 100, height: 100))
                 self.avatarImageView.transform = .identity
-                self.avatarImageView.layer.cornerRadius = 50
+                self.avatarImageView.layer.cornerRadius = 75
                 self.backView.alpha = 0
             })
 

@@ -5,15 +5,20 @@
 //  Created by Marat on 11.05.2023.
 //
 
-import Foundation
+//import Foundation
 import UIKit
 
 
-final class CustomTableViewCell: UITableViewCell, ProfileViewControllerDelegate {
+final class CustomTableViewCell: UITableViewCell {
+   
+    
     
     
     
     //MARK: - Class Properties Свойства Класса
+    
+    //Пустое замыкание
+    var tapLikes: (() -> Void)? = nil
     
     //Создаю contentWhiteView
     let contentWhiteView: UIView = {
@@ -62,6 +67,7 @@ final class CustomTableViewCell: UITableViewCell, ProfileViewControllerDelegate 
         likesView.translatesAutoresizingMaskIntoConstraints = false
         likesView.font = UIFont.systemFont(ofSize: 16)
         likesView.textColor = .black
+        likesView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(labelTapped)))
         likesView.isUserInteractionEnabled = true
         
         return likesView
@@ -88,7 +94,7 @@ final class CustomTableViewCell: UITableViewCell, ProfileViewControllerDelegate 
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         addingViewsFromeCustomTableView()
         addingConstraints()
-        addLike()
+//        addLike()
         
     }
     
@@ -127,22 +133,28 @@ final class CustomTableViewCell: UITableViewCell, ProfileViewControllerDelegate 
         }
     }
     
-    func addLikes(post: Post) {
-        post.likesPost + 1
+//    func addLikes(post: Post) {
+//        post.likesPost + 1
+//    }
+//
+    
+    @objc func labelTapped() {
+        if let action = self.tapLikes { action() }
     }
     
-    func addLike() {
-        let tapGuaster = UITapGestureRecognizer()
-        likesView.addGestureRecognizer(tapGuaster)
-        tapGuaster.addTarget(self, action: #selector(tapLikes))
-    }
     
-    @objc func tapLikes() {
-
-        let profileViewController = ProfileViewController()
-        profileViewController.postNumberOne.likesPost += 1
-        print("Hello World!")
-    }
+//    func addLike() {
+//        let tapGuaster = UITapGestureRecognizer()
+//        likesView.addGestureRecognizer(tapGuaster)
+//        tapGuaster.addTarget(self, action: #selector(tapLikes))
+//    }
+//
+//    @objc func tapLikes() {
+//
+//        let profileViewController = ProfileViewController()
+//        profileViewController.postNumberOne.likesPost += 1
+//        print("Hello World!")
+//    }
     
     private func addingConstraints() {
         NSLayoutConstraint.activate([

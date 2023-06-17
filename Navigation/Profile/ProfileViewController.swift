@@ -165,6 +165,15 @@ extension ProfileViewController: UITableViewDataSource {
             cell.setupCell(insertPost: postsArray[indexPath.row - 1])
             cell.likesView.isUserInteractionEnabled = true
 //            cell.likesView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(cell.tapLikes)))
+            cell.tapLikes = {
+                if !self.postsArray[indexPath.row].isLike {
+                        self.postsArray[indexPath.row].likesPost += 1
+                        self.postsArray[indexPath.row].isLike = true
+                        self.tableView.reloadData()
+                }
+                                    
+            }
+            
             return cell
         }
         
