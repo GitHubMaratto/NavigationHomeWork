@@ -19,6 +19,8 @@ final class CustomTableViewCell: UITableViewCell {
     
     //Пустое замыкание
     var tapLikes: (() -> Void)? = nil
+    //Пустое замыкание
+    var tapViews: (() -> Void)? = nil
     
     //Создаю contentWhiteView
     let contentWhiteView: UIView = {
@@ -46,6 +48,8 @@ final class CustomTableViewCell: UITableViewCell {
         imagePostView.translatesAutoresizingMaskIntoConstraints = false
         imagePostView.contentMode = .scaleAspectFit
         imagePostView.backgroundColor = .black
+        imagePostView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #showDetails))
+        imagePostView.isUserInteractionEnabled = true
         
         return imagePostView
     }()
@@ -132,6 +136,11 @@ final class CustomTableViewCell: UITableViewCell {
             contentView.addSubview($0)
         }
     }
+    
+    @objc func showDetailPost() {
+        if let action = self.tapViews { action() }
+    }
+    
     
 //    func addLikes(post: Post) {
 //        post.likesPost + 1
