@@ -88,18 +88,12 @@ final class CustomTableViewCell: UITableViewCell {
         return viewViews
     }()
     
-    let profileViewController = ProfileViewController()
-    lazy var postsArrays = profileViewController.postsArray
-    
-    
     //MARK: -  Class Initializer Инициализатор Класса
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         addingViewsFromeCustomTableView()
         addingConstraints()
-//        addLike()
-        
     }
     
     required init?(coder: NSCoder) {
@@ -125,7 +119,6 @@ final class CustomTableViewCell: UITableViewCell {
         descriptionTextLabel.text = insertPost.descriptionPost
         likesView.text = "Likes: \(String(insertPost.likesPost))"
         viewViews.text = "Views: \(String(insertPost.viewsPost))"
-//        self.likesView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(tapLikes)))
         likesView.isUserInteractionEnabled = true
         
     }
@@ -141,31 +134,10 @@ final class CustomTableViewCell: UITableViewCell {
         if let action = self.tapViews { action() }
     }
     
-    
-//    func addLikes(post: Post) {
-//        post.likesPost + 1
-//    }
-//
-    
     @objc func labelTapped() {
         if let action = self.tapLikes { action() }
-//        print("Hello World!")
     }
-    
-    
-//    func addLike() {
-//        let tapGuaster = UITapGestureRecognizer()
-//        likesView.addGestureRecognizer(tapGuaster)
-//        tapGuaster.addTarget(self, action: #selector(labelTapped))
-//    }
 
-//    @objc func tapMyLikes() {
-////        if let action = self.tapLikes { action() }
-//        let profileViewController = ProfileViewController()
-//        profileViewController.postNumberOne.likesPost += 1
-//        print("Hello World!")
-//    }
-    
     private func addingConstraints() {
         NSLayoutConstraint.activate([
             //Констрейнты для contentWhiteView

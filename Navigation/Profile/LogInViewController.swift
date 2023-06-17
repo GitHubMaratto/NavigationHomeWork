@@ -10,8 +10,8 @@ class LogInViewController: UIViewController {
     private let minLength = 8
     private lazy var regex = "^(?=.*[а-я])(?=.*[А-Я])(?=.*\\d)(?=.*[$@$!%*?&#])[А-Яа-я\\d$@$!%*?&#]{,}$"
     
-    private let login = "1"
-    private let password = "1"
+    private let login = "loginSetup"
+    private let password = "loginSetup"
 
     //Создаю scrollView
     private let scrollView: UIScrollView = {
@@ -183,22 +183,7 @@ class LogInViewController: UIViewController {
         ])
         
     }
-    
-//    private func checkEmailValidation(login: String) {
-//        if login.matches(insertRegax: regex) {
-//            print("Validation True")
-//        }
-//        else {
-//            print("Validation False")
-//        }
-//    }
-    
-//    func isValidEmail(_ email: String) -> Bool {
-//        let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{a,64}"
-//
-//        let emailPred = NSPredicate(format: "SELF MATHCES %@", emailRegEx)
-//        return emailPred.evaluate(with: email)
-//    }
+
     
     //Метод кнопки логина Log In
     @objc func buttonLigInPressed() {
@@ -282,30 +267,10 @@ class LogInViewController: UIViewController {
 //Расширяю LogInViewController для кнопки ретурн на клавиатуре что бы скрыть клавиатуру для ввода
 extension LogInViewController: UITextFieldDelegate {
     
-//    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-//        let text = (loginTextField.text ?? "") + string
-//        var res: String
-//        res = text
-//        
-////        if range.length == 1 {
-////            let end = text.index(text.startIndex, offsetBy: text.count - 1)
-////            res = String(text[text.startIndex..<end])
-////        } else {
-////            res = text
-////        }
-//        
-////        checkEmailValidation(login: res)
-//        loginTextField.text = res
-//        return true
-//    }
-    
     //Метод при выполнении нажатии кнопки return на клавиатур
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         view.endEditing(true)
-        
-//        let isSuccessValidation = (loginTextField.text == login)
-//        checkEmailValidation(login: loginTextField.text!)
-        
+
         let isEmptyLogin = loginTextField.text == ""
         let isEmptyPassword = passwordTextField.text == ""
         let isLengthIsNotSuccess = (passwordTextField.text!.count < minLength)

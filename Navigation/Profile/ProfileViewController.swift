@@ -8,16 +8,18 @@ class ProfileViewController: UIViewController {
     
     //MARK: - Class Properties Cвойства Класса
     
-    //Создаю экземпляр posts из структуры Post присваиваю метод makePosts()
-    var postsArrayArray = Post.makePosts()
+    //Создаю экземпляр galleryOnScreen из структуры PhotoViewStruct присваиваю метод makeGallery()
     private var galleryOnScreen = PhotoViewStruct.makeGallery()
-    var post = Post.makePostsWithArray()
+    //Создаю пост postNumberOne
     var postNumberOne = Post(authorPost: "Marat Avzalov", descriptionPost: "This is my Post", imagePost: UIImage(named: "Photo")!, likesPost: 650, viewsPost: 1000)
+    //Создаю пост postNumberTwo
     var postNumberTwo = Post(authorPost: "MDK", descriptionPost: "This cat is Cool for You today", imagePost:  UIImage(named: "MDKPost")!, likesPost: 1500, viewsPost: 100000000)
+    //Создаю пост postNumberThree
     var postNumberThree = Post(authorPost: "Travel", descriptionPost: "Nice Weather Nice Shine", imagePost: UIImage(named: "NicePost")!, likesPost: 1500, viewsPost: 1000000000000)
+    //Создаю пост postNumberFour
     var postNumberFour = Post(authorPost: "Post with Love", descriptionPost: "Love is...", imagePost: UIImage(named: "LoveIsPost")!, likesPost: 5000, viewsPost: 500000000000)
+    //Создаю массив postsArray
     var postsArray = [Post]()
-    var delegate: ProfileViewControllerDelegate?
     
     //Создаю tableView
     let tableView: UITableView = {
@@ -33,10 +35,6 @@ class ProfileViewController: UIViewController {
         return tableView
     }()
     
-    //MARK: -  Class Initializer Инициализатор Класса
-    
-
-    
     //MARK: - Class Methods Методаы Класса
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,8 +44,6 @@ class ProfileViewController: UIViewController {
         
         tableView.delegate = self
         tableView.dataSource = self
-        
-        tableView.reloadData()
         
         self.navigationController?.navigationBar.isHidden = true
         
@@ -101,12 +97,6 @@ extension ProfileViewController: UITableViewDelegate {
             let photosGallery = PhotosViewController()
             navigationController?.pushViewController(photosGallery, animated: true)
         }
-        
-        else {
-//            let postPresentDetailVC = PostPresentDetailVC()
-//            postPresentDetailVC.setupVC(insertPost: postsArray[indexPath.row], indexPath: indexPath)
-//            present(postPresentDetailVC, animated: true)
-        }
     }
     
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
@@ -120,7 +110,6 @@ extension ProfileViewController: UITableViewDelegate {
             tableView.beginUpdates()
            
             postsArray.remove(at: indexPath.row)
-//            postsArrayArray[indexPath.section].remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .top)
             
             tableView.endUpdates()
@@ -143,20 +132,6 @@ extension ProfileViewController: UITableViewDataSource {
         } else {
             return postsArray.count
         }
-//        
-//        if section == 0 {
-//            return 1
-//        } else if section == 1 {
-//            return 1
-//        } else if section == 2 {
-//            return 1
-//        } else if section == 3 {
-//            return 1
-//        } else if section == 4 {
-//            return 1
-//        } else {
-//            return postsArray.count
-//        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -168,98 +143,24 @@ extension ProfileViewController: UITableViewDataSource {
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: CustomTableViewCell.identifier, for: indexPath) as! CustomTableViewCell
             cell.setupCell(insertPost: postsArray[indexPath.row])
-//            cell.likesView.isUserInteractionEnabled = true
-//            cell.likesView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(cell.tapLikes)))
-   
-            
-            cell.tapViews = {
-                let postPresentDetailVC = PostPresentDetailVC()
-                self.postsArray[indexPath.row].viewsPost += 1
-                self.tableView.reloadData()
-                self.present(postPresentDetailVC, animated: true)
-                postPresentDetailVC.setupVC(insertPost: self.postsArray[indexPath.row], indexPath: indexPath)
-//                self.postPresentDetailVC.setupVC(insertPost: postsArray[indexPath.row], indexPath: indexPath)
-//                present(postPresentDetailVC, animated: true)
-//                postPresentDetailVC.setupVC(insertPost: postsArray[indexPath.row], indexPath: IndexPath) = self.postsArray[indexPath.row]
-//
-//                postPresentDetailVC.parentNavigationController = self.navigationController
-//                self.navigationController?.present(postPresentDetailVC, animated: true)
-//
-//
-////                let postPresentDetailVC = PostPresentDetailVC()
-//                postPresentDetailVC.setupVC(insertPost: postsArray[indexPath.row], indexPath: indexPath)
-//                present(postPresentDetailVC, animated: true)
-//
-            
-            }
-            
-            
-            
-            cell.tapLikes = {
-                if !self.postsArray[indexPath.row].isLike {
-                        self.postsArray[indexPath.row].likesPost += 1
-                        self.postsArray[indexPath.row].isLike = true
-                        self.tableView.reloadData()
+                cell.tapViews = {
+                    let postPresentDetailVC = PostPresentDetailVC()
+                    self.postsArray[indexPath.row].viewsPost += 1
+                    self.tableView.reloadData()
+                    self.present(postPresentDetailVC, animated: true)
+                    postPresentDetailVC.setupVC(insertPost: self.postsArray[indexPath.row], indexPath: indexPath)
                 }
-                                    
-            }
+                cell.tapLikes = {
+                    if !self.postsArray[indexPath.row].isLike {
+                            self.postsArray[indexPath.row].likesPost += 1
+                            self.postsArray[indexPath.row].isLike = true
+                            self.tableView.reloadData()
+                    }
+                                        
+                }
             
             return cell
         }
         
-        
-        
-        
-        
-//        if indexPath.section == 1 {
-//            let cell = tableView.dequeueReusableCell(withIdentifier: CustomTableViewCell.identifier, for: indexPath) as! CustomTableViewCell
-//            cell.setupCell(insertPost: postsArrayArray[indexPath.section][indexPath.row])
-//            cell.setupCell(insertPost: post[indexPath.row])
-//            cell.authorTextLabel.text =  postNumberOne.authorPost
-//            cell.imagePostView.image = postNumberOne.imagePost
-//            cell.descriptionTextLabel.text = postNumberOne.descriptionPost
-//            cell.likesView.text = "Likes: \(String(postNumberOne.likesPost))"
-//            cell.viewViews.text = "Views: \(String(postNumberOne.viewsPost))"
-//            cell.likesView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(cell.tapLikes)))
-//            cell.likesView.isUserInteractionEnabled = true
-//
-//            return cell
-//        } else if indexPath.section == 2 {
-//            let cell = tableView.dequeueReusableCell(withIdentifier: CustomTableViewCell.identifier, for: indexPath) as! CustomTableViewCell
-//            cell.authorTextLabel.text =  postNumberTwo.authorPost
-//            cell.imagePostView.image = postNumberTwo.imagePost
-//            cell.descriptionTextLabel.text = postNumberTwo.descriptionPost
-//            cell.likesView.text = "Likes: \(String(postNumberTwo.likesPost))"
-//            cell.viewViews.text = "Views: \(String(postNumberTwo.viewsPost))"
-//            cell.likesView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(cell.tapLikes)))
-//            cell.likesView.isUserInteractionEnabled = true
-//
-//            return cell
-//        } else if indexPath.section == 3 {
-//            let cell = tableView.dequeueReusableCell(withIdentifier: CustomTableViewCell.identifier, for: indexPath) as! CustomTableViewCell
-//            cell.authorTextLabel.text =  postNumberThree.authorPost
-//            cell.imagePostView.image = postNumberThree.imagePost
-//            cell.descriptionTextLabel.text = postNumberThree.descriptionPost
-//            cell.likesView.text = "Likes: \(String(postNumberThree.likesPost))"
-//            cell.viewViews.text = "Views: \(String(postNumberThree.viewsPost))"
-////                cell.likesView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(tapLikes)))
-//            cell.likesView.isUserInteractionEnabled = true
-//
-//            return cell
-//        } else if indexPath.section == 4 {
-//            let cell = tableView.dequeueReusableCell(withIdentifier: CustomTableViewCell.identifier, for: indexPath) as! CustomTableViewCell
-//            cell.authorTextLabel.text =  postNumberFour.authorPost
-//            cell.imagePostView.image = postNumberFour.imagePost
-//            cell.descriptionTextLabel.text = postNumberFour.descriptionPost
-//            cell.likesView.text = "Likes: \(String(postNumberFour.likesPost))"
-//            cell.viewViews.text = "Views: \(String(postNumberFour.viewsPost))"
-////                cell.likesView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(tapLikes)))
-//            cell.likesView.isUserInteractionEnabled = true
-//
-//            return cell
-//        } else {
-//            let cell = tableView.dequeueReusableCell(withIdentifier: CustomTableViewCell.identifier, for: indexPath) as! CustomTableViewCell
-//            return cell
-//        }
     }
 }

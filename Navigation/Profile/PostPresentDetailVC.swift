@@ -8,21 +8,10 @@
 import Foundation
 import UIKit
 
-//MARK: - Protocol PostPresentDetailVCDelegate PostPresentDetailVCDelegate Протокол
-
-protocol PostPresentDetailVCDelegate: AnyObject {
-    func changeText(_ text: String, at indexPath: IndexPath)
-}
 
 class PostPresentDetailVC: UIViewController {
 
     //MARK: - Class Properties Свойства Класса
-    
-    private let nc = NotificationCenter.default
-    
-    private var indexPath = IndexPath()
-    
-    weak var delegatePosrPresentDetailVC: PostPresentDetailVC?
     
     //Создаю authorTextLabel
     private let authorTextLabel: UILabel = {
@@ -75,9 +64,7 @@ class PostPresentDetailVC: UIViewController {
         
         return viewViews
     }()
-    
-    //MARK: -  Class Initializer Инициализатор Класса
-    
+
     //MARK: - Class Methods Методы Класса
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -88,7 +75,6 @@ class PostPresentDetailVC: UIViewController {
     
     //Метод заполнения ячеек
     func setupVC(insertPost: Post, indexPath: IndexPath) {
-//        self.indexPath = indexPath
         authorTextLabel.text =  insertPost.authorPost
         imagePostView.image = insertPost.imagePost
         descriptionTextLabel.text = insertPost.descriptionPost

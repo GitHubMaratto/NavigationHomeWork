@@ -14,8 +14,8 @@
             filePath = "Navigation/Profile/PhotosViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "143"
-            endingLineNumber = "143"
+            startingLineNumber = "134"
+            endingLineNumber = "134"
             landmarkName = "imageTapped()"
             landmarkType = "7">
          </BreakpointContent>
