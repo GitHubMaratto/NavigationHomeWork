@@ -62,7 +62,7 @@ final class CustomTableViewCell: UITableViewCell {
     }()
     
     //Создаю likesView
-    let likesView: UILabel = {
+    lazy var likesView: UILabel = {
         let likesView = UILabel()
         likesView.translatesAutoresizingMaskIntoConstraints = false
         likesView.font = UIFont.systemFont(ofSize: 16)
@@ -140,17 +140,18 @@ final class CustomTableViewCell: UITableViewCell {
     
     @objc func labelTapped() {
         if let action = self.tapLikes { action() }
+//        print("Hello World!")
     }
     
     
 //    func addLike() {
 //        let tapGuaster = UITapGestureRecognizer()
 //        likesView.addGestureRecognizer(tapGuaster)
-//        tapGuaster.addTarget(self, action: #selector(tapLikes))
+//        tapGuaster.addTarget(self, action: #selector(labelTapped))
 //    }
-//
-//    @objc func tapLikes() {
-//
+
+//    @objc func tapMyLikes() {
+////        if let action = self.tapLikes { action() }
 //        let profileViewController = ProfileViewController()
 //        profileViewController.postNumberOne.likesPost += 1
 //        print("Hello World!")

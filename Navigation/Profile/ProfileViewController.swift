@@ -132,12 +132,15 @@ extension ProfileViewController: UITableViewDelegate {
 extension ProfileViewController: UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        1
+        2
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
-        return postsArray.count + 1
+        if section == 0 {
+            return 1
+        } else {
+            return postsArray.count
+        }
 //        
 //        if section == 0 {
 //            return 1
@@ -156,13 +159,13 @@ extension ProfileViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        if indexPath.row == 0 {
+        if indexPath.section == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: PhotosTableViewCell.identifier, for: indexPath) as! PhotosTableViewCell
             cell.setupCellGallery(insertCellPhotos: galleryOnScreen[indexPath.row])
             return cell
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: CustomTableViewCell.identifier, for: indexPath) as! CustomTableViewCell
-            cell.setupCell(insertPost: postsArray[indexPath.row - 1])
+            cell.setupCell(insertPost: postsArray[indexPath.row])
             cell.likesView.isUserInteractionEnabled = true
 //            cell.likesView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(cell.tapLikes)))
             cell.tapLikes = {
