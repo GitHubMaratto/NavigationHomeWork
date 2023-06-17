@@ -100,10 +100,12 @@ extension ProfileViewController: UITableViewDelegate {
         if indexPath.section == 0 {
             let photosGallery = PhotosViewController()
             navigationController?.pushViewController(photosGallery, animated: true)
-        } else {
-            let postPresentDetailVC = PostPresentDetailVC()
-            postPresentDetailVC.setupVC(insertPost: postsArray[indexPath.row], indexPath: indexPath)
-            present(postPresentDetailVC, animated: true)
+        }
+        
+        else {
+//            let postPresentDetailVC = PostPresentDetailVC()
+//            postPresentDetailVC.setupVC(insertPost: postsArray[indexPath.row], indexPath: indexPath)
+//            present(postPresentDetailVC, animated: true)
         }
     }
     
@@ -167,9 +169,6 @@ extension ProfileViewController: UITableViewDataSource {
             let cell = tableView.dequeueReusableCell(withIdentifier: CustomTableViewCell.identifier, for: indexPath) as! CustomTableViewCell
             cell.setupCell(insertPost: postsArray[indexPath.row])
 //            cell.likesView.isUserInteractionEnabled = true
-
-            
-            
 //            cell.likesView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(cell.tapLikes)))
    
             
@@ -177,11 +176,17 @@ extension ProfileViewController: UITableViewDataSource {
                 let postPresentDetailVC = PostPresentDetailVC()
                 self.postsArray[indexPath.row].viewsPost += 1
                 self.tableView.reloadData()
-                postPresentDetailVC.showDetailPost() = self.postsArray[indexPath.row]
-                
-                postPresentDetailVC.parentNavigationController = self.navigationController
-                self.navigationController?.present(postPresentDetailVC, animated: true)
-                
+//                present(postPresentDetailVC, animated: true)
+//                postPresentDetailVC.setupVC(insertPost: postsArray[indexPath.row], indexPath: IndexPath) = self.postsArray[indexPath.row]
+//
+//                postPresentDetailVC.parentNavigationController = self.navigationController
+//                self.navigationController?.present(postPresentDetailVC, animated: true)
+//
+//
+////                let postPresentDetailVC = PostPresentDetailVC()
+//                postPresentDetailVC.setupVC(insertPost: postsArray[indexPath.row], indexPath: indexPath)
+//                present(postPresentDetailVC, animated: true)
+//
             
             }
             

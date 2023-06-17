@@ -88,7 +88,7 @@ class PostPresentDetailVC: UIViewController {
     
     //Метод заполнения ячеек
     func setupVC(insertPost: Post, indexPath: IndexPath) {
-        self.indexPath = indexPath
+//        self.indexPath = indexPath
         authorTextLabel.text =  insertPost.authorPost
         imagePostView.image = insertPost.imagePost
         descriptionTextLabel.text = insertPost.descriptionPost

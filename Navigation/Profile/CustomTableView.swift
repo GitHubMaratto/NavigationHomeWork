@@ -48,7 +48,7 @@ final class CustomTableViewCell: UITableViewCell {
         imagePostView.translatesAutoresizingMaskIntoConstraints = false
         imagePostView.contentMode = .scaleAspectFit
         imagePostView.backgroundColor = .black
-        imagePostView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #showDetails))
+        imagePostView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(showDetailsPost)))
         imagePostView.isUserInteractionEnabled = true
         
         return imagePostView
@@ -137,7 +137,7 @@ final class CustomTableViewCell: UITableViewCell {
         }
     }
     
-    @objc func showDetailPost() {
+    @objc func showDetailsPost() {
         if let action = self.tapViews { action() }
     }
     
