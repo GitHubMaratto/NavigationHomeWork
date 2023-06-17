@@ -7,9 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		799CE38B2A28611D00C75CCB /* PostPresentDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 799CE38A2A28611D00C75CCB /* PostPresentDetailVC.swift */; };
 		799D37022A0C93D800280775 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 799D37012A0C93D800280775 /* Post.swift */; };
 		799D37042A0C972900280775 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 799D37032A0C972900280775 /* UIView+Extension.swift */; };
 		799D37062A0CA2E100280775 /* CustomTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 799D37052A0CA2E100280775 /* CustomTableView.swift */; };
+		799E78892A1DA05C004F7392 /* AlertViewLogin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 799E78882A1DA05C004F7392 /* AlertViewLogin.swift */; };
+		79BCE3722A2968B500118E56 /* PushPhotoGalleryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79BCE3712A2968B500118E56 /* PushPhotoGalleryVC.swift */; };
 		CE4C182D29FB55E20049C21F /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4C182C29FB55E20049C21F /* UIColorExtension.swift */; };
 		CE4C182F29FB5B2A0049C21F /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4C182E29FB5B2A0049C21F /* LogInViewController.swift */; };
 		CE6221D62A148A71002EA8B0 /* PhotosTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6221D52A148A71002EA8B0 /* PhotosTableViewCell.swift */; };
@@ -31,9 +34,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		799CE38A2A28611D00C75CCB /* PostPresentDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostPresentDetailVC.swift; sourceTree = "<group>"; };
 		799D37012A0C93D800280775 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		799D37032A0C972900280775 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		799D37052A0CA2E100280775 /* CustomTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTableView.swift; sourceTree = "<group>"; };
+		799E78882A1DA05C004F7392 /* AlertViewLogin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertViewLogin.swift; sourceTree = "<group>"; };
+		79BCE3712A2968B500118E56 /* PushPhotoGalleryVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushPhotoGalleryVC.swift; sourceTree = "<group>"; };
 		CE4C182C29FB55E20049C21F /* UIColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
 		CE4C182E29FB5B2A0049C21F /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
 		CE6221D52A148A71002EA8B0 /* PhotosTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosTableViewCell.swift; sourceTree = "<group>"; };
@@ -116,6 +122,9 @@
 				CEB28D482A14DDA7000AFC3F /* PhotoViewStruct.swift */,
 				CEB28D4A2A14EA57000AFC3F /* PhotosViewController.swift */,
 				CEB28D522A1641F0000AFC3F /* PhotosCollectionViewCell.swift */,
+				799E78882A1DA05C004F7392 /* AlertViewLogin.swift */,
+				799CE38A2A28611D00C75CCB /* PostPresentDetailVC.swift */,
+				79BCE3712A2968B500118E56 /* PushPhotoGalleryVC.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -193,6 +202,8 @@
 				CEB4212629E5C308006909E7 /* PostViewController.swift in Sources */,
 				CED976D329E18D7C00DCEF82 /* ViewController.swift in Sources */,
 				CED976CF29E18D7C00DCEF82 /* AppDelegate.swift in Sources */,
+				79BCE3722A2968B500118E56 /* PushPhotoGalleryVC.swift in Sources */,
+				799E78892A1DA05C004F7392 /* AlertViewLogin.swift in Sources */,
 				CE4C182D29FB55E20049C21F /* UIColorExtension.swift in Sources */,
 				CE6221D62A148A71002EA8B0 /* PhotosTableViewCell.swift in Sources */,
 				CEB5B45829E5D2A40035F754 /* AlertViewController.swift in Sources */,
@@ -202,6 +213,7 @@
 				799D37022A0C93D800280775 /* Post.swift in Sources */,
 				CEB28D4B2A14EA57000AFC3F /* PhotosViewController.swift in Sources */,
 				CEB4212829E5C5E0006909E7 /* InfoViewController.swift in Sources */,
+				799CE38B2A28611D00C75CCB /* PostPresentDetailVC.swift in Sources */,
 				CEB420DC29E56B43006909E7 /* ProfileViewController.swift in Sources */,
 				799D37042A0C972900280775 /* UIView+Extension.swift in Sources */,
 				CEB5B45E29E5DD260035F754 /* PostTitle.swift in Sources */,

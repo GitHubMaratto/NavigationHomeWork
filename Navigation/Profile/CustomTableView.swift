@@ -5,24 +5,25 @@
 //  Created by Marat on 11.05.2023.
 //
 
-import Foundation
+//import Foundation
 import UIKit
 
 
 final class CustomTableViewCell: UITableViewCell {
-<<<<<<< Updated upstream
-=======
    
+    
+    
+    
+    
     //MARK: - Class Properties Свойства Класса
     
     //Пустое замыкание
     var tapLikes: (() -> Void)? = nil
     //Пустое замыкание
     var tapViews: (() -> Void)? = nil
->>>>>>> Stashed changes
     
     //Создаю contentWhiteView
-    private let contentWhiteView: UIView = {
+    let contentWhiteView: UIView = {
         let contentWhiteView = UIView()
         contentWhiteView.backgroundColor = .white
         contentWhiteView.translatesAutoresizingMaskIntoConstraints = false
@@ -31,7 +32,7 @@ final class CustomTableViewCell: UITableViewCell {
     }()
     
     //Создаю authorTextLabel
-    private let authorTextLabel: UILabel = {
+    let authorTextLabel: UILabel = {
         let authorTextLabel = UILabel()
         authorTextLabel.translatesAutoresizingMaskIntoConstraints = false
         authorTextLabel.font = UIFont.systemFont(ofSize: 20, weight: .bold)
@@ -42,17 +43,19 @@ final class CustomTableViewCell: UITableViewCell {
     }()
     
     //Создаю imagePostView
-    private let imagePostView: UIImageView = {
+    lazy var imagePostView: UIImageView = {
         let imagePostView = UIImageView()
         imagePostView.translatesAutoresizingMaskIntoConstraints = false
         imagePostView.contentMode = .scaleAspectFit
         imagePostView.backgroundColor = .black
+        imagePostView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(showDetailsPost)))
+        imagePostView.isUserInteractionEnabled = true
         
         return imagePostView
     }()
     
     //Создаю descriptionTextLabel
-    private let descriptionTextLabel: UILabel = {
+    let descriptionTextLabel: UILabel = {
         let descriptionTextLabel = UILabel()
         descriptionTextLabel.translatesAutoresizingMaskIntoConstraints = false
         descriptionTextLabel.font = UIFont.systemFont(ofSize: 14)
@@ -63,17 +66,20 @@ final class CustomTableViewCell: UITableViewCell {
     }()
     
     //Создаю likesView
-    private let likesView: UILabel = {
+    lazy var likesView: UILabel = {
         let likesView = UILabel()
         likesView.translatesAutoresizingMaskIntoConstraints = false
         likesView.font = UIFont.systemFont(ofSize: 16)
         likesView.textColor = .black
+        likesView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(labelTapped)))
+        likesView.isUserInteractionEnabled = true
         
         return likesView
     }()
     
+    
     //Создаю viewViews
-    private let viewViews: UILabel = {
+    let viewViews: UILabel = {
         let viewViews = UILabel()
         viewViews.translatesAutoresizingMaskIntoConstraints = false
         viewViews.font = UIFont.systemFont(ofSize: 16)
@@ -82,11 +88,8 @@ final class CustomTableViewCell: UITableViewCell {
         return viewViews
     }()
     
-<<<<<<< Updated upstream
-=======
     //MARK: -  Class Initializer Инициализатор Класса
     
->>>>>>> Stashed changes
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         addingViewsFromeCustomTableView()
@@ -96,6 +99,8 @@ final class CustomTableViewCell: UITableViewCell {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    //MARK: -  Class Methods Методы Класса
     
     //Метод для сбрасывания значения во view
     override func prepareForReuse() {
@@ -114,6 +119,8 @@ final class CustomTableViewCell: UITableViewCell {
         descriptionTextLabel.text = insertPost.descriptionPost
         likesView.text = "Likes: \(String(insertPost.likesPost))"
         viewViews.text = "Views: \(String(insertPost.viewsPost))"
+        likesView.isUserInteractionEnabled = true
+        
     }
     
     //Метод добавляет все наши view на экран
@@ -123,17 +130,14 @@ final class CustomTableViewCell: UITableViewCell {
         }
     }
     
-<<<<<<< Updated upstream
-=======
     @objc func showDetailsPost() {
         if let action = self.tapViews { action() }
     }
-
+    
     @objc func labelTapped() {
         if let action = self.tapLikes { action() }
     }
-    
->>>>>>> Stashed changes
+
     private func addingConstraints() {
         NSLayoutConstraint.activate([
             //Констрейнты для contentWhiteView
@@ -163,13 +167,13 @@ final class CustomTableViewCell: UITableViewCell {
             likesView.topAnchor.constraint(equalTo: descriptionTextLabel.bottomAnchor, constant: 16),
             likesView.leadingAnchor.constraint(equalTo: contentWhiteView.leadingAnchor, constant: 16),
             likesView.widthAnchor.constraint(equalToConstant: 150),
-            likesView.bottomAnchor.constraint(equalTo: contentWhiteView.bottomAnchor),
+            likesView.bottomAnchor.constraint(equalTo: contentWhiteView.bottomAnchor, constant: -16),
             
             //Констрейнты для viewViews
             viewViews.topAnchor.constraint(equalTo: descriptionTextLabel.bottomAnchor, constant: 16),
             
             viewViews.trailingAnchor.constraint(equalTo: contentWhiteView.trailingAnchor, constant: -16),
-            viewViews.bottomAnchor.constraint(equalTo: contentWhiteView.bottomAnchor),
+            viewViews.bottomAnchor.constraint(equalTo: contentWhiteView.bottomAnchor, constant: -16),
         ])
     }
     

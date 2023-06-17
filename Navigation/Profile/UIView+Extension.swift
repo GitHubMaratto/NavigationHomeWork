@@ -8,6 +8,8 @@
 import Foundation
 import UIKit
 
+//MARK: - Extension
+
 //Расширяю UIView
 extension UIView {
     static var identifier: String {

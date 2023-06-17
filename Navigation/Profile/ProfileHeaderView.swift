@@ -76,7 +76,7 @@ class ProfileHeaderView: UIView {
     //Создаю statusTextField текстфилд для ввода текста
     let statusTextField: UITextField = {
         let textFieldCreate = UITextField()
-        textFieldCreate.placeholder = "Whrite me my status"
+        textFieldCreate.placeholder = "Enter your status"
         textFieldCreate.font = UIFont.systemFont(ofSize: 15, weight: .regular)
         textFieldCreate.textColor = .black
         textFieldCreate.backgroundColor = .white
@@ -84,6 +84,7 @@ class ProfileHeaderView: UIView {
         textFieldCreate.layer.borderWidth = 1
         textFieldCreate.layer.borderColor = UIColor.black.cgColor
         textFieldCreate.translatesAutoresizingMaskIntoConstraints = false
+        textFieldCreate.addPaddingView()
         
         return textFieldCreate
     }()
@@ -119,6 +120,8 @@ class ProfileHeaderView: UIView {
         super.init(frame: frame)
         addingViewsFromProfileHeaderView()
         addigLayouts()
+        
+        statusTextField.delegate = self
 
     }
     required init?(coder: NSCoder) {
@@ -195,8 +198,22 @@ class ProfileHeaderView: UIView {
     @objc func buttonPressed() {
         let textToPrint = statusLabel.text
         print("\(String(describing: textToPrint))")
-    }
+        
+        let isEmptyStatusTextField = statusTextField.text == ""
+        if isEmptyStatusTextField {
+            statusTextField.backgroundColor = .red
+            statusTextField.layer.borderColor = UIColor.tintColor.cgColor
+            statusTextField.shake()
 
+            DispatchQueue.main.asyncAfter(deadline: .now() + 5){
+                self.statusTextField.backgroundColor = .white
+                self.statusTextField.layer.borderColor = UIColor.black.cgColor
+            }
+        } else {
+            statusLabel.text = statusTextField.text
+            statusTextField.text = ""
+        }
+    }
     
     //Метод avatarTap() при нажатии на аватар увеливчивает его на весь экран
     @objc private func avatarTap() {
@@ -226,11 +243,37 @@ class ProfileHeaderView: UIView {
             UIView.animate(withDuration: 0.5, animations: {
                 self.avatarImageView.frame = .init(origin: CGPoint(x: 16, y: 16), size: CGSize(width: 100, height: 100))
                 self.avatarImageView.transform = .identity
-                self.avatarImageView.layer.cornerRadius = 50
+                self.avatarImageView.layer.cornerRadius = 75
                 self.backView.alpha = 0
             })
 
         }
     }
   
+}
+
+    //MARK: - Class Extension Расширения Класса
+
+extension ProfileHeaderView: UITextFieldDelegate {
+    public func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        let textToPrint = statusLabel.text
+        print("\(String(describing: textToPrint))")
+        
+        let isEmptyStatusTextField = statusTextField.text == ""
+        if isEmptyStatusTextField {
+            statusTextField.backgroundColor = .red
+            statusTextField.layer.borderColor = UIColor.tintColor.cgColor
+            statusTextField.shake()
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + 5){
+                self.statusTextField.backgroundColor = .white
+                self.statusTextField.layer.borderColor = UIColor.black.cgColor
+            }
+        } else {
+            statusLabel.text = statusTextField.text
+            statusTextField.text = ""
+        }
+        
+        return true
+    }
 }

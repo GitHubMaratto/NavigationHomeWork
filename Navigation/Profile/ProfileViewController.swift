@@ -1,18 +1,15 @@
 import UIKit
 
-class ProfileViewController: UIViewController {
-<<<<<<< Updated upstream
-    //Создаю экземпляр posts из структуры Post присваиваю метод makePosts()
-    private var posts = Post.makePosts()
-    private var galleryOnScreen = PhotoViewStruct.makeGallery()
+protocol ProfileViewControllerDelegate {
+    func addLikes(post: Post)
+}
 
-=======
+class ProfileViewController: UIViewController {
     
     //MARK: - Class Properties Cвойства Класса
     
-    //Создаю galleryOnScreen из структуры PhotoViewStruct метод makeGallery()
+    //Создаю экземпляр galleryOnScreen из структуры PhotoViewStruct присваиваю метод makeGallery()
     private var galleryOnScreen = PhotoViewStruct.makeGallery()
-    
     //Создаю пост postNumberOne
     var postNumberOne = Post(authorPost: "Marat Avzalov", descriptionPost: "This is my Post", imagePost: UIImage(named: "Photo")!, likesPost: 650, viewsPost: 1000)
     //Создаю пост postNumberTwo
@@ -21,41 +18,32 @@ class ProfileViewController: UIViewController {
     var postNumberThree = Post(authorPost: "Travel", descriptionPost: "Nice Weather Nice Shine", imagePost: UIImage(named: "NicePost")!, likesPost: 1500, viewsPost: 1000000000000)
     //Создаю пост postNumberFour
     var postNumberFour = Post(authorPost: "Post with Love", descriptionPost: "Love is...", imagePost: UIImage(named: "LoveIsPost")!, likesPost: 5000, viewsPost: 500000000000)
-    //Создаю массив с поставми postsArray
+    //Создаю массив postsArray
     var postsArray = [Post]()
     
->>>>>>> Stashed changes
     //Создаю tableView
-    private lazy var tableView: UITableView = {
+    let tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .grouped)
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.backgroundColor = .systemGray4
         tableView.register(CustomTableViewCell.self, forCellReuseIdentifier: CustomTableViewCell.identifier)
         tableView.register(PhotosTableViewCell.self, forCellReuseIdentifier: PhotosTableViewCell.identifier)
-        tableView.delegate = self
-        tableView.dataSource = self
+        
         //Выставляю высоту ячеек
         tableView.rowHeight = UITableView.automaticDimension
         
         return tableView
     }()
-<<<<<<< Updated upstream
-
-=======
     
     //MARK: - Class Methods Методаы Класса
->>>>>>> Stashed changes
     override func viewDidLoad() {
         super.viewDidLoad()
         addingViews()
         addingLayouts()
-<<<<<<< Updated upstream
-=======
         addingArrays()
         
         tableView.delegate = self
         tableView.dataSource = self
->>>>>>> Stashed changes
         
         self.navigationController?.navigationBar.isHidden = true
         
@@ -77,6 +65,17 @@ class ProfileViewController: UIViewController {
         ])
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+    }
+    
+    func addingArrays() {
+        postsArray.append(postNumberOne)
+        postsArray.append(postNumberTwo)
+        postsArray.append(postNumberThree)
+        postsArray.append(postNumberFour)
+    }
+    
 }
 //Расширю ProfileViewController и подписывваюсь под протокол UITableViewDelegate
 extension ProfileViewController: UITableViewDelegate {
@@ -93,14 +92,7 @@ extension ProfileViewController: UITableViewDelegate {
         }
     }
     
-    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-<<<<<<< Updated upstream
-        let photosGallery = PhotosViewController()
-        navigationController?.pushViewController(photosGallery, animated: true)
-    }
-    
-=======
         if indexPath.section == 0 {
             let photosGallery = PhotosViewController()
             navigationController?.pushViewController(photosGallery, animated: true)
@@ -123,39 +115,33 @@ extension ProfileViewController: UITableViewDelegate {
             tableView.endUpdates()
         }
     }
->>>>>>> Stashed changes
 }
+
+//MARK: - Class Extention Расширения Класса
 
 //Расширяю ProfileViewController и подписываюсь под протокол UITableViewDataSource
 extension ProfileViewController: UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        5
+        2
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 {
-            let countOfRowsInSectionFirst = 1
-            return countOfRowsInSectionFirst
-        } else if section >= 1 {
-            let countOfRowsInSection = posts[section].count
-            return countOfRowsInSection
+            return 1
         } else {
-            return posts[section].count
+            return postsArray.count
         }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         if indexPath.section == 0 {
-            let cellOne = tableView.dequeueReusableCell(withIdentifier: PhotosTableViewCell.identifier, for: indexPath) as! PhotosTableViewCell
-            cellOne.setupCellGallery(insertCellPhotos: galleryOnScreen[indexPath.row])
-            return cellOne
+            let cell = tableView.dequeueReusableCell(withIdentifier: PhotosTableViewCell.identifier, for: indexPath) as! PhotosTableViewCell
+            cell.setupCellGallery(insertCellPhotos: galleryOnScreen[indexPath.row])
+            return cell
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: CustomTableViewCell.identifier, for: indexPath) as! CustomTableViewCell
-<<<<<<< Updated upstream
-            cell.setupCell(insertPost: posts[indexPath.section][indexPath.row])
-=======
             cell.setupCell(insertPost: postsArray[indexPath.row])
                 cell.tapViews = {
                     let postPresentDetailVC = PostPresentDetailVC()
@@ -170,11 +156,11 @@ extension ProfileViewController: UITableViewDataSource {
                             self.postsArray[indexPath.row].isLike = true
                             self.tableView.reloadData()
                     }
+                                        
                 }
-        
->>>>>>> Stashed changes
+            
             return cell
         }
+        
     }
-
 }

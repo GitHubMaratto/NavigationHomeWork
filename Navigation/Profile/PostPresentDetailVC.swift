@@ -9,11 +9,10 @@ import Foundation
 import UIKit
 
 
-
 class PostPresentDetailVC: UIViewController {
 
     //MARK: - Class Properties Свойства Класса
-
+    
     //Создаю authorTextLabel
     private let authorTextLabel: UILabel = {
         let authorTextLabel = UILabel()
@@ -65,7 +64,7 @@ class PostPresentDetailVC: UIViewController {
         
         return viewViews
     }()
-    
+
     //MARK: - Class Methods Методы Класса
     override func viewDidLoad() {
         super.viewDidLoad()
