@@ -1,10 +1,30 @@
 import UIKit
 
 class ProfileViewController: UIViewController {
+<<<<<<< Updated upstream
     //Создаю экземпляр posts из структуры Post присваиваю метод makePosts()
     private var posts = Post.makePosts()
     private var galleryOnScreen = PhotoViewStruct.makeGallery()
 
+=======
+    
+    //MARK: - Class Properties Cвойства Класса
+    
+    //Создаю galleryOnScreen из структуры PhotoViewStruct метод makeGallery()
+    private var galleryOnScreen = PhotoViewStruct.makeGallery()
+    
+    //Создаю пост postNumberOne
+    var postNumberOne = Post(authorPost: "Marat Avzalov", descriptionPost: "This is my Post", imagePost: UIImage(named: "Photo")!, likesPost: 650, viewsPost: 1000)
+    //Создаю пост postNumberTwo
+    var postNumberTwo = Post(authorPost: "MDK", descriptionPost: "This cat is Cool for You today", imagePost:  UIImage(named: "MDKPost")!, likesPost: 1500, viewsPost: 100000000)
+    //Создаю пост postNumberThree
+    var postNumberThree = Post(authorPost: "Travel", descriptionPost: "Nice Weather Nice Shine", imagePost: UIImage(named: "NicePost")!, likesPost: 1500, viewsPost: 1000000000000)
+    //Создаю пост postNumberFour
+    var postNumberFour = Post(authorPost: "Post with Love", descriptionPost: "Love is...", imagePost: UIImage(named: "LoveIsPost")!, likesPost: 5000, viewsPost: 500000000000)
+    //Создаю массив с поставми postsArray
+    var postsArray = [Post]()
+    
+>>>>>>> Stashed changes
     //Создаю tableView
     private lazy var tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .grouped)
@@ -19,11 +39,23 @@ class ProfileViewController: UIViewController {
         
         return tableView
     }()
+<<<<<<< Updated upstream
 
+=======
+    
+    //MARK: - Class Methods Методаы Класса
+>>>>>>> Stashed changes
     override func viewDidLoad() {
         super.viewDidLoad()
         addingViews()
         addingLayouts()
+<<<<<<< Updated upstream
+=======
+        addingArrays()
+        
+        tableView.delegate = self
+        tableView.dataSource = self
+>>>>>>> Stashed changes
         
         self.navigationController?.navigationBar.isHidden = true
         
@@ -63,10 +95,35 @@ extension ProfileViewController: UITableViewDelegate {
     
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+<<<<<<< Updated upstream
         let photosGallery = PhotosViewController()
         navigationController?.pushViewController(photosGallery, animated: true)
     }
     
+=======
+        if indexPath.section == 0 {
+            let photosGallery = PhotosViewController()
+            navigationController?.pushViewController(photosGallery, animated: true)
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            print("delete")
+            
+            tableView.beginUpdates()
+           
+            postsArray.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .top)
+            
+            tableView.endUpdates()
+        }
+    }
+>>>>>>> Stashed changes
 }
 
 //Расширяю ProfileViewController и подписываюсь под протокол UITableViewDataSource
@@ -96,7 +153,26 @@ extension ProfileViewController: UITableViewDataSource {
             return cellOne
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: CustomTableViewCell.identifier, for: indexPath) as! CustomTableViewCell
+<<<<<<< Updated upstream
             cell.setupCell(insertPost: posts[indexPath.section][indexPath.row])
+=======
+            cell.setupCell(insertPost: postsArray[indexPath.row])
+                cell.tapViews = {
+                    let postPresentDetailVC = PostPresentDetailVC()
+                    self.postsArray[indexPath.row].viewsPost += 1
+                    self.tableView.reloadData()
+                    self.present(postPresentDetailVC, animated: true)
+                    postPresentDetailVC.setupVC(insertPost: self.postsArray[indexPath.row], indexPath: indexPath)
+                }
+                cell.tapLikes = {
+                    if !self.postsArray[indexPath.row].isLike {
+                            self.postsArray[indexPath.row].likesPost += 1
+                            self.postsArray[indexPath.row].isLike = true
+                            self.tableView.reloadData()
+                    }
+                }
+        
+>>>>>>> Stashed changes
             return cell
         }
     }

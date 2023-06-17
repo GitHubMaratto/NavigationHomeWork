@@ -44,6 +44,7 @@ class PhotosViewController: UIViewController {
         addingLayoutsPhotosGalleryViewController()
         makeArrayImages()
     }
+<<<<<<< Updated upstream
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(true, animated: animated)
@@ -52,6 +53,8 @@ class PhotosViewController: UIViewController {
         super.viewWillDisappear(animated)
         navigationController?.setNavigationBarHidden(true, animated: animated)
     }
+=======
+>>>>>>> Stashed changes
     
     private func setNavigationBarToTheGallery() {
         let navigationItemAdd = UINavigationItem(title: "Photo Gallery")
@@ -64,7 +67,11 @@ class PhotosViewController: UIViewController {
     }
  
     @objc func dissmissSelf() {
+<<<<<<< Updated upstream
         navigationController?.pushViewController(ProfileViewController(), animated: true)
+=======
+        navigationController?.popViewController(animated: true)
+>>>>>>> Stashed changes
         print("tapped")
     }
   

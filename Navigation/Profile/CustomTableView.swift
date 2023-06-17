@@ -10,6 +10,16 @@ import UIKit
 
 
 final class CustomTableViewCell: UITableViewCell {
+<<<<<<< Updated upstream
+=======
+   
+    //MARK: - Class Properties Свойства Класса
+    
+    //Пустое замыкание
+    var tapLikes: (() -> Void)? = nil
+    //Пустое замыкание
+    var tapViews: (() -> Void)? = nil
+>>>>>>> Stashed changes
     
     //Создаю contentWhiteView
     private let contentWhiteView: UIView = {
@@ -72,6 +82,11 @@ final class CustomTableViewCell: UITableViewCell {
         return viewViews
     }()
     
+<<<<<<< Updated upstream
+=======
+    //MARK: -  Class Initializer Инициализатор Класса
+    
+>>>>>>> Stashed changes
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         addingViewsFromeCustomTableView()
@@ -108,6 +123,17 @@ final class CustomTableViewCell: UITableViewCell {
         }
     }
     
+<<<<<<< Updated upstream
+=======
+    @objc func showDetailsPost() {
+        if let action = self.tapViews { action() }
+    }
+
+    @objc func labelTapped() {
+        if let action = self.tapLikes { action() }
+    }
+    
+>>>>>>> Stashed changes
     private func addingConstraints() {
         NSLayoutConstraint.activate([
             //Констрейнты для contentWhiteView

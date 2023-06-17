@@ -140,9 +140,6 @@ class ProfileHeaderView: UIView {
         addSubview(backView)
         addSubview(closeButton)
         addSubview(avatarImageView)
-
-        
-        
     }
     
     //Метод добавленя Constraints

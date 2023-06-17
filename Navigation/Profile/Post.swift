@@ -15,6 +15,7 @@ struct Post {
     var imagePost: UIImage
     var likesPost: Int
     var viewsPost: Int
+<<<<<<< Updated upstream
     
     static func makePosts() -> [[Post]] {
         //Создаю массив массивов со значениями Post
@@ -55,4 +56,7 @@ struct Post {
     }
     
     
+=======
+    var isLike: Bool = false
+>>>>>>> Stashed changes
 }

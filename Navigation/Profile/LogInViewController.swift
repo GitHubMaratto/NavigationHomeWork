@@ -2,6 +2,19 @@ import Foundation
 import UIKit
 
 class LogInViewController: UIViewController {
+<<<<<<< Updated upstream
+=======
+    
+    //MARK: - Class Properties Свойства Класса
+    
+    let profileViewController = ProfileViewController()
+    
+    private let minLength = 8
+    private lazy var regex = "^(?=.*[а-я])(?=.*[А-Я])(?=.*\\d)(?=.*[$@$!%*?&#])[А-Яа-я\\d$@$!%*?&#]{,}$"
+    
+    private let login = "loginSetup"
+    private let password = "passwordSetup"
+>>>>>>> Stashed changes
 
     //Создаю scrollView
     private let scrollView: UIScrollView = {
@@ -154,6 +167,10 @@ class LogInViewController: UIViewController {
         ])
         
     }
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
     //Метод кнопки логина Log In
     @objc func buttonLigInPressed() {
         let profileViewController = ProfileViewController()
@@ -163,8 +180,92 @@ class LogInViewController: UIViewController {
 }
 //Расширяю LogInViewController для кнопки ретурн на клавиатуре что бы скрыть клавиатуру для ввода
 extension LogInViewController: UITextFieldDelegate {
+<<<<<<< Updated upstream
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         view.endEditing(true)
+=======
+    
+
+    
+    //Метод при выполнении нажатии кнопки return на клавиатур
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        view.endEditing(true)
+        
+        let isEmptyLogin = loginTextField.text == ""
+        let isEmptyPassword = passwordTextField.text == ""
+        let isLengthIsNotSuccess = (passwordTextField.text!.count < minLength)
+        let isSuccess = (passwordTextField.text == password && loginTextField.text == login)
+        
+        if isEmptyLogin && isEmptyPassword {
+            loginTextField.backgroundColor = .red
+            loginTextField.layer.borderWidth = 1.0
+            loginTextField.layer.borderColor = UIColor.tintColor.cgColor
+            loginTextField.shake()
+            
+            passwordTextField.backgroundColor = .red
+            passwordTextField.layer.borderWidth = 1.0
+            passwordTextField.layer.borderColor = UIColor.tintColor.cgColor
+            passwordTextField.shake()
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
+                self.loginTextField.backgroundColor = .systemGray6
+                self.loginTextField.layer.borderWidth = 0.5
+                self.loginTextField.layer.borderColor = UIColor.systemGray.cgColor
+                
+                self.passwordTextField.backgroundColor = .systemGray6
+                self.passwordTextField.layer.borderWidth = 0.5
+                self.passwordTextField.layer.borderColor = UIColor.systemGray.cgColor
+            }
+        } else if isEmptyLogin {
+            loginTextField.backgroundColor = .red
+            loginTextField.layer.borderWidth = 1.0
+            loginTextField.layer.borderColor = UIColor.tintColor.cgColor
+            loginTextField.shake()
+            DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
+                self.loginTextField.backgroundColor = .systemGray6
+                self.loginTextField.layer.borderWidth = 0.5
+                self.loginTextField.layer.borderColor = UIColor.systemGray.cgColor
+            }
+        } else if isEmptyPassword {
+            passwordTextField.backgroundColor = .red
+            passwordTextField.layer.borderWidth = 1.0
+            passwordTextField.layer.borderColor = UIColor.tintColor.cgColor
+            passwordTextField.shake()
+            DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
+                self.passwordTextField.backgroundColor = .systemGray6
+                self.passwordTextField.layer.borderWidth = 0.5
+                self.passwordTextField.layer.borderColor = UIColor.systemGray.cgColor
+            }
+        } else if isLengthIsNotSuccess && !isSuccess {
+            messageLabel.textColor = .red
+            messageLabel.text = "Пароль должен содержать \nНе меньше \(minLength) символов"
+            DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
+                self.messageLabel.text = ""
+            }
+            
+            let alertShow = AlertViewLogin(title: "Логин или пароль введен не верно", message: "Попробуйте снова", preferredStyle: .alert)
+            let tryAgain = UIAlertAction(title: "Еще раз", style: .default)
+            alertShow.addAction(tryAgain)
+            present(alertShow, animated: true)
+            
+        } else if !isSuccess{
+            let alertShow = AlertViewLogin(title: "Логин или пароль введен не верно", message: "Попробуйте снова", preferredStyle: .alert)
+            let tryAgain = UIAlertAction(title: "Еще раз", style: .default)
+            alertShow.addAction(tryAgain)
+            present(alertShow, animated: true)
+        } else {
+            navigationController?.pushViewController(profileViewController, animated: true)
+            messageLabel.textColor = .green
+            messageLabel.text = "Верно"
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
+                self.messageLabel.text = ""
+            }
+        }
+        
+        textField.resignFirstResponder()
+        
+>>>>>>> Stashed changes
         return true
     }
 }
